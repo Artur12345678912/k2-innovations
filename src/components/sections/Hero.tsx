@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, Phone, Star, TrendingUp, Users, CheckCircle, Zap } from "lucide-react"
 
 const trustBadges = [
@@ -24,6 +25,22 @@ export function Hero() {
             backgroundSize: "48px 48px",
           }}
         />
+      </div>
+
+      {/* Futuristic hero image — right side */}
+      <div className="absolute right-0 top-0 bottom-0 w-1/2 -z-10 hidden lg:block pointer-events-none">
+        <div className="relative w-full h-full">
+          <Image
+            src="https://images.unsplash.com/photo-1760629863094-5b1e8d1aae74?w=900&q=80&auto=format&fit=crop"
+            alt="Futuristic AI"
+            fill
+            className="object-cover object-center opacity-25"
+            sizes="50vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
+        </div>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-24 w-full">
