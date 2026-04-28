@@ -3,38 +3,52 @@
 import { motion } from "framer-motion"
 import { Star, Quote } from "lucide-react"
 
-const testimonials = [
+const TESTIMONIALS = [
   {
-    quote: "K2 hat unsere Geschäftsprozesse vollständig automatisiert. Wir sparen über 30 Stunden pro Woche und haben unseren Umsatz um 70% gesteigert – in nur 3 Monaten.",
+    id: "1",
+    text: "K2 hat unsere Geschäftsprozesse vollständig automatisiert. Wir sparen über 30 Stunden pro Woche und haben unseren Umsatz um 70% gesteigert – in nur 3 Monaten.",
     name: "Konstantin Radevski",
-    role: "Inhaber, Meze Bar",
-    avatar: "KR",
+    role: "Inhaber",
+    company: "Meze Bar",
+    rating: 5,
   },
   {
-    quote: "Transparent, effizient und auf gegenseitigem Vertrauen basierend – K2 Innovations hat genau das geliefert was ich mir vorgestellt habe.",
+    id: "2",
+    text: "Transparent, effizient und auf gegenseitigem Vertrauen basierend – K2 Innovations hat genau das geliefert was ich mir vorgestellt habe.",
     name: "Larissa Vögel",
-    role: "KI-Wandel",
-    avatar: "LV",
+    role: "Gründerin",
+    company: "KI-Wandel",
+    rating: 5,
   },
   {
-    quote: "Kosten und Zeitaufwände deutlich reduziert. Die Zusammenarbeit mit K2 war von Anfang an professionell und strukturiert.",
+    id: "3",
+    text: "Kosten und Zeitaufwände deutlich reduziert. Die Zusammenarbeit mit K2 war von Anfang an professionell und strukturiert.",
     name: "Luis Schneider",
-    role: "JOVENTI",
-    avatar: "LS",
+    role: "Geschäftsführer",
+    company: "JOVENTI",
+    rating: 5,
   },
   {
-    quote: "Der KI-Telefonassistent übernimmt meine Gespräche zuverlässig. Ich kann mich endlich auf das Wesentliche konzentrieren.",
+    id: "4",
+    text: "Der KI-Telefonassistent übernimmt meine Gespräche zuverlässig. Ich kann mich endlich auf das Wesentliche konzentrieren.",
     name: "Leon Schröther",
-    role: "Schröther GmbH",
-    avatar: "LS",
+    role: "Inhaber",
+    company: "Schröther GmbH",
+    rating: 5,
   },
   {
-    quote: "K2 hat eine starke Website für mich erstellt – und damit direkt mehr Kunden gewonnen. Absolut empfehlenswert.",
+    id: "5",
+    text: "K2 hat eine starke Website für mich erstellt – und damit direkt mehr Kunden gewonnen. Absolut empfehlenswert.",
     name: "Alex Bernthaler",
     role: "Fotograf",
-    avatar: "AB",
+    company: "",
+    rating: 5,
   },
 ]
+
+function initials(name: string) {
+  return name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+}
 
 export function Testimonials() {
   return (
@@ -54,9 +68,9 @@ export function Testimonials() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {testimonials.map(({ quote, name, role, avatar }, i) => (
+          {TESTIMONIALS.map(({ id, text, name, role, company, rating }, i) => (
             <motion.div
-              key={name}
+              key={id}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -64,19 +78,21 @@ export function Testimonials() {
               className="glass-card rounded-2xl p-7 flex flex-col gap-5 hover:border-primary/30 transition-all duration-300"
             >
               <Quote size={24} className="text-primary/40" />
-              <p className="text-foreground/80 text-sm leading-relaxed flex-1">"{quote}"</p>
+              <p className="text-foreground/80 text-sm leading-relaxed flex-1">&ldquo;{text}&rdquo;</p>
               <div className="flex items-center justify-between pt-4 border-t border-border/50">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs font-[var(--font-sora)]">
-                    {avatar}
+                  <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs font-[var(--font-sora)] shrink-0">
+                    {initials(name)}
                   </div>
                   <div>
                     <div className="font-semibold text-foreground text-sm">{name}</div>
-                    <div className="text-xs text-muted-foreground">{role}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {role}{company ? `, ${company}` : ""}
+                    </div>
                   </div>
                 </div>
                 <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, j) => (
+                  {[...Array(rating)].map((_, j) => (
                     <Star key={j} size={12} className="fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>

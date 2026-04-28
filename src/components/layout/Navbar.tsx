@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -39,12 +40,15 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-18">
-        <Link
-          href="/"
-          className="font-[var(--font-sora)] font-bold text-xl tracking-tight"
-        >
-          <span className="text-primary">K2</span>
-          <span className="text-foreground"> Innovations</span>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="K2 Innovations"
+            width={120}
+            height={48}
+            className="h-10 w-auto object-contain"
+            priority
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
