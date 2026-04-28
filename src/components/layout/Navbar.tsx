@@ -15,6 +15,7 @@ const navLinks = [
       { label: "KI-Mitarbeiter", href: "#leistungen" },
     ],
   },
+  { label: "KI-Dienstleistungen", href: "/ki-dienstleistungen" },
   { label: "Über uns", href: "#team" },
   { label: "Blog", href: "#" },
   { label: "Kontakt", href: "#kontakt" },
